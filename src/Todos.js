@@ -1,8 +1,9 @@
 import React from 'react';
 import {Button,Card,ListGroup,Row,Col} from 'react-bootstrap';
 export default class Todos extends React.Component{
-
+// Component that lists the tasks todo.
 		render(){
+			// Creates the todo list.
 			const todoList = this.props.todos.length ? (
 			this.props.todos.map(todo => {
 				return (

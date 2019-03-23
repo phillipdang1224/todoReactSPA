@@ -3,7 +3,7 @@ import Todos from './Todos';
 import AddTodo from './AddTodo';
 import Total from './Total';
 import {Container,Row,Col} from 'react-bootstrap';
-
+// Main application
 export default class App extends Component {
   state = {
     //Initial state of the application 2 elements

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button,Card,ListGroup,Row,Col,Alert} from 'react-bootstrap';
 export default class Total extends React.Component {
+	// Component that calculates the total
   render(){
     return(
       	<div>

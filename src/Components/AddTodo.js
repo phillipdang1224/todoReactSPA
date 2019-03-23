@@ -32,6 +32,7 @@ export default class AddTodo extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		this.props.addTodo(this.state);
+		document.getElementById("addForm").reset();
 	}
 	render(){
 		//Creates the Form for adding a task.
@@ -39,7 +40,7 @@ export default class AddTodo extends Component {
 			<div>
 			<Card style={{ width: '100%' }}>
 			<ListGroup variant="flush">
-				<Form onSubmit ={this.handleSubmit}>
+				<Form id="addForm" onSubmit ={this.handleSubmit}>
 					<ListGroup.Item>
 					<Form.Group>
 						<Form.Label>Enter task name: </Form.Label>

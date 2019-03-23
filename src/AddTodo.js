@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 import {Form,Button,Card,ListGroup} from 'react-bootstrap';
 export default class AddTodo extends Component {
+	// Component that creates the form.
 	state = {
 		desc: '',
 		status: '',

@@ -1,28 +1,81 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import Todos from './Todos';
+import AddTodo from './AddTodo';
+import Total from './Total';
+import {Container,Row,Col} from 'react-bootstrap';
 
-class App extends Component {
-  render() {
+export default class App extends Component {
+  state = {
+    //Initial state of the application 2 elements
+    todos: [
+      {id: 1,name:'Learn todolist',desc: 'do this task',status:'Planned',estimate:2,btnClr:'primary'},
+      {id: 2,name:'Learn React',desc: 'do this task again',status:'Complete',estimate:3,btnClr:'success'},
+      {id: 3,name:'Learn Angular',desc: 'do this task again',status:'In Progress',estimate:6,btnClr:'secondary'}
+    ]
+  }
+  // adds a task to the list
+  // ID is the number of elements in the list
+
+    addTodo = (todo) => {
+      todo.id = this.state.todos.length+1;
+      
+      if(todo.status == "Planned"){
+        todo.btnClr = "primary"
+      }else if (todo.status == "In Progress"){
+        todo.btnClr = "secondary"
+      }else{
+        todo.btnClr = "success"
+      }
+      let todos = [...this.state.todos, todo]
+
+      this.setState({
+        todos
+      })
+
+
+  }
+//Filters out the specified ID in the list
+  deleteTodo = (id) => {
+    const todos = this.state.todos.filter(todo => {
+      return todo.id !== id
+    });
+    this.setState({
+      todos
+    })
+  }
+  //Changes the state of the element
+  editState = (id) =>{
+    const statusMap = {"Planned":"In Progress", "In Progress":"Complete","Complete":"Planned"}
+    const colourMap = {"primary":"secondary","secondary":"success","success":"primary"}
+    const todos = this.state.todos;
+    todos[id-1]["status"] = statusMap[todos[id-1]["status"]]
+    todos[id-1]["btnClr"] = colourMap[todos[id-1]["btnClr"]]
+    this.setState({
+      todos
+    })
+
+
+  }
+  // Actual application
+  render(){
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <Container>
+      
+      <Row>
+      <Col>
+      <h1>Todo's</h1>
+      <Todos todos={this.state.todos} deleteTodo={this.deleteTodo} editState={this.editState}/>
+            <Total todos={this.state.todos}/>
+      </Col>
+      <Col>
+      <h1>Add Todo</h1>
+      <AddTodo addTodo={this.addTodo}/>
+      </Col>
+      </Row>
+      </Container>
+
       </div>
-    );
+      )
   }
 }
-
-export default App;

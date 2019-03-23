@@ -39,7 +39,7 @@ export default class Todos extends React.Component{
 								</Col>
 								<Col> 
 									<Button block variant={todo.btnClr} 
-									onClick={() =>{this.props.editState(todo.id,todo.status,todo.btnClr)}}>
+									onClick={() =>{this.props.editState(todo.id)}}>
 									{todo.status}
 									</Button>
 								</Col>

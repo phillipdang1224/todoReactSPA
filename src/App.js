@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Todos from './Todos';
-import AddTodo from './AddTodo';
-import Total from './Total';
+import Todos from './Components/Todos';
+import AddTodo from './Components/AddTodo';
+import Total from './Components/Total';
 import {Container,Row,Col} from 'react-bootstrap';
 // Main application
 export default class App extends Component {
@@ -45,6 +45,7 @@ export default class App extends Component {
   }
   //Changes the state of the element
   editState = (id) =>{
+    // Used hash table to change state of button and button styling
     const statusMap = {"Planned":"In Progress", "In Progress":"Complete","Complete":"Planned"}
     const colourMap = {"primary":"secondary","secondary":"success","success":"primary"}
     const todos = this.state.todos;
